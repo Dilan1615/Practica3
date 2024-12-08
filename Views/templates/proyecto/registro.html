@@ -1,0 +1,75 @@
+{% extends "template.html" %}
+{% block content %}
+    <div class="pagetitle">
+        <h1>Registro de Proyectos</h1>
+    </div>
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card_body">
+                        <h5 class="card-title">Registrar Proyecto</h5>
+
+                        <!-- ALERTA DE REGISTRO -->
+                        {% if mensaje %}
+                        <div class="alert alert-{{ mensaje.tipo }}" role="alert">
+                            {{ mensaje.texto }}
+                        </div>
+                        {% endif %}
+
+                        <form class="row g-3 needs-validation" method="POST" action="/admin/proyecto/save" novalidate>   
+                            <div class="col-md-6">
+                                <label for="nombre" class="form-label">
+                                    Nombre 
+                                    <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="Nombre único del proyecto"></i>
+                                </label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" autocomplete="off" minlength="3" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="inversionista" class="form-label">Inversionistas</label>
+                                <input type="text" class="form-control" id="inversionista" name="inversionista" autocomplete="off" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="inversion" class="form-label">Inversión</label>
+                                <input type="number" class="form-control" id="inversion" name="inversion" step="0.01" min="0" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="tiempoVida" class="form-label">Tiempo de Vida (años)</label>
+                                <input type="number" class="form-control" id="tiempoVida" name="tiempoVida" min="1" max="100" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="inicio" class="form-label">Fecha Inicio</label>
+                                <input type="date" class="form-control" id="inicio" name="inicio" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="fin" class="form-label">Fecha Fin</label>
+                                <input type="date" class="form-control" id="fin" name="fin" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="tipoEnergia" class="form-label">Tipo de Energía</label>
+                                <select class="form-control" id="tipo" name="tipo" required>
+                                    {% for item in lista %}
+                                    <option value="{{ item }}" title="Tipo: {{ item }}">{{ item }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary">Agregar</button>
+                                <a href="/admin/proyecto/register" class="btn btn-warning">Limpiar Formulario</a>
+                                <a href="/admin/proyecto/list" class="btn btn-danger">Cancelar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

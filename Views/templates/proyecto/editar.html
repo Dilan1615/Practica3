@@ -1,0 +1,73 @@
+{% extends "template.html" %}
+{% block content %}
+    <div class="pagetitle">
+        <h1>Editar Proyectos</h1>
+    </div>
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-10">
+
+                <div class="card">
+                    <div class="card_body">
+                        <h5 class="card-title">Editar Proyectos</h5>
+
+                        <form class="row g-3 needs-validation" method="POST" action="/admin/proyecto/update" novalidate>
+                            <input type="hidden" value="{{proyecto.id}}" name="id"/>
+                                                        
+                            <div class="col-md-5">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" name="nombre" required value="{{proyecto.nombre}}">
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="inversionista" class="form-label">Inversionistas</label>                              
+                                <input type="text" class="form-control" name="inversionista" required value="{{proyecto.inversionista}}">
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="inversion" class="form-label">Inversión</label>                           
+                                <input type="number" class="form-control" name="inversion" step="0.01"  required value="{{proyecto.inversion}}">
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="tiempoVida" class="form-label">Tiempo de Vida</label>
+                                <input type="number" class="form-control" name="tiempoVida" required value="{{proyecto.tiempoVida}}">
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="inicio" class="form-label">Fecha Inicio</label>
+                                <input type="date" class="form-control" name="inicio" required value="{{proyecto.inicio}}">
+                            </div>
+                            
+                            <div class="col-md-5">
+                                <label for="fin" class="form-label">Fecha Fin</label>
+                                <input type="date" class="form-control" name="fin" required value="{{proyecto.fin}}">
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="tipoEnergia" class="form-label">Tipo de Energia</label>
+                                <select class="form-control" id="tipo" name="tipo" required>
+                                    {% for item in lista %}
+                                    <option value="{{ item }}">{{ item }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>       
+                            <div class="col-md-7">
+                                <button type="submit" class="btn btn-primary">Agregar</button>
+                            </div>        
+                            <div class="col-md-7">                            
+                                <a href="/admin/proyecto/list" class="btn btn-danger">Cancelar</a>
+                            </div>                                             
+                        </form>
+                        <div>
+                            
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
